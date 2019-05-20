@@ -1,0 +1,59 @@
+
+For this task, I used 3 big cities from my country (Indonesia): Bandung, Surabaya and Jakarta.
+
+/* Query 1 - query used for insight for Bandung */
+
+WITH indo AS(SELECT *
+FROM city_list c
+WHERE c.city = 'Bandung'),
+
+t1 AS(SELECT cd.year AS Year, i.city AS City, i.country AS Country, cd.avg_temp AS Avg
+FROM city_data cd
+JOIN indo i
+ON cd.city = i.city AND cd.country = i.country
+WHERE cd.avg_temp IS NOT NULL
+ORDER BY 3,2,1)
+
+SELECT t1.year, t1.Avg, g.avg_temp
+FROM global_data g
+JOIN t1
+ON t1.year = g.year
+
+
+/* Query 2 - query used for insight for Surabaya */
+
+WITH indo AS(SELECT *
+FROM city_list c
+WHERE c.city = 'Surabaya'),
+
+t1 AS(SELECT cd.year AS Year, i.city AS City, i.country AS Country, cd.avg_temp AS Avg
+FROM city_data cd
+JOIN indo i
+ON cd.city = i.city AND cd.country = i.country
+WHERE cd.avg_temp IS NOT NULL
+ORDER BY 3,2,1)
+
+SELECT t1.year, t1.Avg, g.avg_temp
+FROM global_data g
+JOIN t1
+ON t1.year = g.year
+
+
+
+/* Query 3 - query used for insight for Jakarta */
+
+WITH indo AS(SELECT *
+FROM city_list c
+WHERE c.city = 'Jakarta'),
+
+t1 AS(SELECT cd.year AS Year, i.city AS City, i.country AS Country, cd.avg_temp AS Avg
+FROM city_data cd
+JOIN indo i
+ON cd.city = i.city AND cd.country = i.country
+WHERE cd.avg_temp IS NOT NULL
+ORDER BY 3,2,1)
+
+SELECT t1.year, t1.Avg, g.avg_temp
+FROM global_data g
+JOIN t1
+ON t1.year = g.year
